@@ -1,8 +1,11 @@
 # Getting up and running
 
 > For the purposes of this exercise only npm was catered for in terms of lock files
-> Total time spent was around 3-5 hours including this document :D
-> Please spend the time reading the readme :D
+
+> Total time spent was around 3-5 hours including this document
+
+> Please spend the time reading the readme
+
 > By running `$ npm run test` you should see the output
 
 ## Options considered for the example
