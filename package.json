@@ -1,0 +1,25 @@
+{
+  "name": "twitter-feed-assessment-node",
+  "version": "1.0.0",
+  "description": "display a list of tweets for all users",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "NODE_ENV=test jest",
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
+  },
+  "author": "De Wet van der Merwe",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "lodash.union": "^4.6.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "dotenv": "^7.0.0",
+    "jest": "^24.7.1",
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
+  }
+}
