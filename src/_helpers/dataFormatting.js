@@ -1,6 +1,16 @@
 const union = require('lodash.union');
 
 /**
+ * @function isValidLine
+ * @description checks if text has minimum what we expect
+ * we assume that the index will need to be bigger than 0
+ * @param {String} str
+ * @param {String} delimiter
+ * @returns {Boolean}
+ */
+exports.isValidLine = (str, delimiter) => str.indexOf(delimiter) > 0;
+
+/**
  * @function unionUsersFollowingCollection
  * @description unions a users following list
  * @param {Array} usersData
@@ -8,7 +18,12 @@ const union = require('lodash.union');
  */
 exports.unionUsersFollowingCollection = usersData =>
   usersData.sort().reduce((usersObj, user) => {
-    const [username, following] = user.split(' follows ');
+    const delimiter = ' follows ';
+    if (!exports.isValidLine(user, delimiter)) {
+      return usersObj;
+    }
+
+    const [username, following] = user.split(delimiter);
     const followingArray = following.split(', ');
     const existingUserData = usersObj[username];
     usersObj[username] = {
@@ -32,7 +47,15 @@ exports.unionUsersFollowingCollection = usersData =>
  */
 exports.formatTweetsCollection = tweetsData =>
   tweetsData.reduce((tweetsArr, tweet) => {
-    const [user, msg] = tweet.split('> ');
+    const delimiter = '> ';
+    if (!exports.isValidLine(tweet, delimiter)) {
+      return tweetsArr;
+    }
+    let [user, ...msg] = tweet.split(delimiter);
+    if (user.trim() === '' || (!Array.isArray(msg) && msg.trim() === '')) {
+      return tweetsArr;
+    }
+    msg = msg.join(delimiter);
     tweetsArr.push({ user, msg });
     return tweetsArr;
   }, []);
