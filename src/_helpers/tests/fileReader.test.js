@@ -5,7 +5,7 @@ describe('Helpers > fileReader', () => {
   describe('- fileDataToCleanArray', () => {
     const mockFileData = '\r\n\n\n       Line 1\r\n          Line 2               \nLine 3 \r\n\r\n';
 
-    test(JSON.stringify('it should remove all instances of \r\n with \n').replace(/"/g, ''), () => {
+    test(JSON.stringify('it should replace all instances of \r\n with \n').replace(/"/g, ''), () => {
       const output = fileDataToCleanArray(mockFileData);
       expect(output).toEqual(['Line 1', 'Line 2', 'Line 3']);
     });
